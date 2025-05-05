@@ -1,39 +1,43 @@
 package com.generation.projeto_final_bloco_02.model;
 
-import java.util.List;
+import java.math.BigDecimal;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "tb_categorias")
-public class Categoria {
+@Table(name = "tb_produtos")
+public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    
     @NotBlank
     private String nome;
 
-	@NotBlank
-    @Size(min =  5, max = 200)
-    @NotNull(message = "A descrição é obrigatória")
+    @Size(min = 10, max = 1000)
     private String descricao;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria", cascade = CascadeType.REMOVE)
-    @JsonIgnoreProperties("categoria")
-    private List<Produto> produto;
+    @NotNull(message = "Preço é obrigatório!")
+    @Positive(message = "O preço deve ser maior do que zero!")
+    private BigDecimal preco;
+
+    @NotNull
+    private Integer estoque;
+
+    @ManyToOne
+    @JsonIgnoreProperties("produto")
+    private Categoria categoria;
 
     public Long getId() {
         return id;
@@ -58,12 +62,28 @@ public class Categoria {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    
-    public List<Produto> getProduto() {
-        return produto;
+
+    public BigDecimal getPreco() {
+        return preco;
     }
 
-    public void setProduto(List<Produto> produto) {
-        this.produto = produto;
+    public void setPreco(BigDecimal preco) {
+        this.preco = preco;
+    }
+
+    public Integer getEstoque() {
+        return estoque;
+    }
+
+    public void setEstoque(Integer estoque) {
+        this.estoque = estoque;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 }

@@ -1,0 +1,464 @@
+type: collection.insomnia.rest/5.0
+name: Scratch Pad
+meta:
+  id: wrk_scratchpad
+  created: 1744638464706
+  modified: 1744638464706
+collection:
+  - name: Projeto Blog Pessoal
+    meta:
+      id: fld_7ec444b3a9b1494ebe78c2660c7da1e7
+      created: 1744722064284
+      modified: 1745528220008
+      sortKey: -1744722064284
+    children:
+      - name: Postagens
+        meta:
+          id: fld_1a58de714eee4035b2818e49f3de86b9
+          created: 1744809756977
+          modified: 1744809756977
+          sortKey: -1744809756977
+      - name: Tema
+        meta:
+          id: fld_81da5c6451424a3f965de865e95abcb1
+          created: 1744809789267
+          modified: 1744809789267
+          sortKey: -1744809789267
+      - name: Usuario
+        meta:
+          id: fld_e2d13d16f35c4e5d81acaf0bfb23bb29
+          created: 1745494946041
+          modified: 1745494946041
+          sortKey: -1745494946041
+    scripts:
+      preRequest: >-
+        let host = insomnia.collectionVariables.get("host");
+
+        let username = insomnia.collectionVariables.get("username");
+
+        let password = insomnia.collectionVariables.get("password");
+
+
+        let body = JSON.stringify({
+            "username": username,
+            "password": password
+        })
+
+
+        const postRequest = {
+          url: host + '/logar',
+          method: 'POST',
+          timeout: 0,
+          header: {
+            "Content-Type": "application/json",
+            "Accept": "*/*"
+          },
+          body: body
+        };
+
+        insomnia.sendRequest(postRequest, function (err, res) {
+            console.log("Login Response: ", res);
+            if (err) console.log("Error: ", err)
+            let authorization = res.headers.get('Authorization')
+            insomnia.collectionVariables.set('authorization_token', authorization);
+        });
+    environment:
+      "":
+        host: localhost:8080/usuarios
+        username: pamsilva@gmail.com
+        password: P@m23002
+  - name: Loja Games Java
+    meta:
+      id: fld_e74c602d3bd745b1ab3aa47fd3284a28
+      created: 1745331133367
+      modified: 1745331133367
+      sortKey: -1745331130792
+    children:
+      - name: Produtos
+        meta:
+          id: fld_f9502b19f7934ff0905cfe778f0b01ca
+          created: 1745331133368
+          modified: 1745844670975
+          sortKey: -1745331130791
+      - name: Categoria
+        meta:
+          id: fld_3b00911e1bf34cb58c4f70840e9fea0a
+          created: 1745331133374
+          modified: 1745331133374
+          sortKey: -1745331130784
+  - name: ToDo Simple App
+    meta:
+      id: fld_f669142219ea46568b82e5419cb0a4e6
+      created: 1745498316768
+      modified: 1745502410552
+      sortKey: -1745498314655
+    children:
+      - name: User
+        meta:
+          id: fld_8611fc65fd0045d1838b4454c22df427
+          created: 1745498316770
+          modified: 1745498316770
+          sortKey: -1745498314654
+      - name: Task
+        meta:
+          id: fld_ebed2727b0494d54bf87d9fb77a37959
+          created: 1745498316776
+          modified: 1745498316776
+          sortKey: -1745498314649
+    scripts:
+      preRequest: >-
+        let host = insomnia.collectionVariables.get("host");
+
+        let username = insomnia.collectionVariables.get("username");
+
+        let password = insomnia.collectionVariables.get("password");
+
+
+        let body = JSON.stringify({
+            "username": username,
+            "password": password
+        })
+
+
+        const postRequest = {
+          url: host + '/login',
+          method: 'POST',
+          timeout: 0,
+          header: {
+            "Content-Type": "application/json",
+            "Accept": "*/*"
+          },
+          body: body
+        };
+
+        insomnia.sendRequest(postRequest, function (err, res) {
+            console.log("Login Response: ", res);
+            if (err) console.log("Error: ", err)
+            let authorization = res.headers.get('Authorization')
+            insomnia.collectionVariables.set('authorization_token', authorization);
+        });
+    environment:
+      host: localhost:8080
+      username: lucas
+      password: supersenha
+    environmentPropertyOrder:
+      "&":
+        - host
+        - authorization_token
+        - username
+        - password
+  - name: Sistema_rh-insomnia
+    meta:
+      id: fld_b5efa588c60747e4857e6550ee52f4f6
+      created: 1745608734270
+      modified: 1745608783468
+      sortKey: -1745608734270
+    children:
+      - name: Usuarios
+        meta:
+          id: fld_5b150b8e4680429b87cfd2dbb714a592
+          created: 1745608902921
+          modified: 1745609069128
+          sortKey: -1745608902921
+      - name: Pagamentos
+        meta:
+          id: fld_64fef8d9b24e415a8807c2cea6b26083
+          created: 1745609572781
+          modified: 1745609844855
+          sortKey: -1745608897251.5
+      - name: Funcionarios
+        meta:
+          id: fld_003204be457c4bf2b4e2d74dbd2a4ef8
+          created: 1745609969759
+          modified: 1745609969759
+          sortKey: -1745608888733.75
+  - name: E-commerce Farmacia Java
+    meta:
+      id: fld_161cb23d177045ea91e630773e1b66db
+      created: 1746449696368
+      modified: 1746449696368
+      sortKey: -1745331130791.5
+    children:
+      - name: Produtos
+        meta:
+          id: fld_a8291ba5b5e84a7f8980bfc0d0fc1081
+          created: 1746449696369
+          modified: 1746449696369
+          sortKey: -1745331130791
+        children:
+          - url: http://localhost:8080/produtos
+            name: GetAll
+            meta:
+              id: req_873555c5e7d1492fa9a386234fdc82ef
+              created: 1746449696369
+              modified: 1746449696369
+              isPrivate: false
+              sortKey: -1745331130790
+            method: GET
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/produtos/procurar/500
+            name: GetNome
+            meta:
+              id: req_7ebbbc0697964a6bad74c5d99854bd7a
+              created: 1746449696370
+              modified: 1746451740111
+              isPrivate: false
+              sortKey: -1745331130787
+            method: GET
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/produtos/deletar/1
+            name: Apagar Produto
+            meta:
+              id: req_944b7027af2b4f7a80de69dd0862de33
+              created: 1746449696370
+              modified: 1746451846435
+              isPrivate: false
+              sortKey: -1745331130789
+            method: DELETE
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/produtos
+            name: Cadastrar Produto
+            meta:
+              id: req_32a79e5ea68d41f19f2ec8e5b8244534
+              created: 1746449696371
+              modified: 1746451692655
+              isPrivate: false
+              sortKey: -1745331130786
+            method: POST
+            body:
+              mimeType: application/json
+              text: >-
+                {
+                    "nome": "Amoxicilina 500mg",
+                    "descricao": "Antibiótico de largo espectro. Requer receita médica",
+                    "preco": "25.00",
+                    "estoque": 100,
+                    "categoria": {
+                        "id": 2
+                    }
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/produtos/1
+            name: GetId
+            meta:
+              id: req_54aa893a83be4b458724b0e868cae859
+              created: 1746449696371
+              modified: 1746451718401
+              isPrivate: false
+              sortKey: -1745331130788
+            method: GET
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/produtos/atualizar
+            name: Atualizar Produto
+            meta:
+              id: req_b718f665e7ac40f5a9c24a977724017d
+              created: 1746449696371
+              modified: 1746451827893
+              isPrivate: false
+              sortKey: -1745331130785
+            method: PUT
+            body:
+              mimeType: application/json
+              text: >-
+                {
+                    "id": 1,
+                    "nome": "Azitromicina 500mg",
+                    "descricao": "Indicado para infecções respiratórias e de pele",
+                    "preco": "30.00",
+                    "estoque": 77,
+                    "categoria": {
+                        "id": 2
+                    }
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: Categoria
+        meta:
+          id: fld_00b807fdebb54896adeb09e1103f4ab7
+          created: 1746449696372
+          modified: 1746449696372
+          sortKey: -1745331130784
+        children:
+          - url: http://localhost:8080/categorias
+            name: GetAll
+            meta:
+              id: req_f58ac78bb4324d50ab31481c4816d8cf
+              created: 1746449696372
+              modified: 1746449696372
+              isPrivate: false
+              sortKey: -1745331130783
+            method: GET
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/categorias/deletar/1
+            name: Apagar Categoria
+            meta:
+              id: req_4df88b05cde84b7490a8516581b47bed
+              created: 1746449696373
+              modified: 1746449995480
+              isPrivate: false
+              sortKey: -1745331130782
+            method: DELETE
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/categorias/procurar/An
+            name: GetNome
+            meta:
+              id: req_59ffe4fc1b58433497091ec5441f84fe
+              created: 1746449696373
+              modified: 1746450072889
+              isPrivate: false
+              sortKey: -1745331130780
+            method: GET
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/categorias/1
+            name: GetId
+            meta:
+              id: req_be670b5e26ff4e0e915116a2b5f2b5fa
+              created: 1746449696373
+              modified: 1746449696373
+              isPrivate: false
+              sortKey: -1745331130781
+            method: GET
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/categorias
+            name: Cadastrar Categoria
+            meta:
+              id: req_9f9526446e88447db8003b95bab4f8a0
+              created: 1746449696374
+              modified: 1746449842817
+              isPrivate: false
+              sortKey: -1745331130779
+            method: POST
+            body:
+              mimeType: application/json
+              text: >-
+                {
+                    "nome": "Antibióticos",
+                    "descricao": "Remédios usados no tratamento de infecções bacterianas. Requerem receita médica."
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/categorias/atualizar
+            name: Atualizar Categoria
+            meta:
+              id: req_cc2c85aaa4e14bbc979d3a68956627dc
+              created: 1746449696374
+              modified: 1746449957148
+              isPrivate: false
+              sortKey: -1745331130778
+            method: PUT
+            body:
+              mimeType: application/json
+              text: >-
+                {
+                    "id": 1,
+                    "nome": "Analgésicos",
+                    "descricao": "Medicamentos para alívio da dor, como dipirona, paracetamol e ibuprofeno"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1744638477430
+    modified: 1744638477430
+environments:
+  name: Base Environment
+  meta:
+    id: env_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1744638477230
+    modified: 1746023928265
+    isPrivate: false
