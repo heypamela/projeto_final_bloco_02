@@ -30,6 +30,7 @@ import jakarta.validation.Valid;
 public class ProdutoController {
     @Autowired
     private ProdutoRepository produtoRepository;
+    
     @Autowired
     private CategoriaRepository categoriaRepository;
 
@@ -75,9 +76,9 @@ public class ProdutoController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/deletar/{id}")
     public void delete(@PathVariable Long id){
-        Optional<Produto> Produto = produtoRepository.findById(id);
+        Optional<Produto> produto = produtoRepository.findById(id);
 
-        if (Produto.isEmpty()) 
+        if (produto.isEmpty()) 
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         
         produtoRepository.deleteById(id);
