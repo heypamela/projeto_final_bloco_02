@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.generation.projeto_final_bloco_02.model.Produto;
+import com.generation.projeto_final_bloco_02.model.ProdutoDto;
 import com.generation.projeto_final_bloco_02.repository.ProdutoRepository;
+import com.generation.projeto_final_bloco_02.service.ProdutoService;
 import com.generation.projeto_final_bloco_02.repository.CategoriaRepository;
 
 import jakarta.validation.Valid;
@@ -30,22 +32,26 @@ import jakarta.validation.Valid;
 public class ProdutoController {
     @Autowired
     private ProdutoRepository produtoRepository;
+
+    @Autowired
+    private ProdutoService produtoService;
+
     @Autowired
     private CategoriaRepository categoriaRepository;
 
-    @GetMapping()
+    @GetMapping("/exibir-todos")
     public ResponseEntity<List<Produto>> getAll(){
         return ResponseEntity.ok(produtoRepository.findAll());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/procurar/id/{id}")
     public ResponseEntity<Produto> getById(@PathVariable Long id) {
         return produtoRepository.findById(id)
-            .map(resposta -> ResponseEntity.ok(resposta))
+            .map(ResponseEntity::ok)
             .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
     
-    @GetMapping("/procurar/{nome}")
+    @GetMapping("/procurar/nome/{nome}")
     public ResponseEntity<List<Produto>> getByNome(@PathVariable String nome) {
         return ResponseEntity.ok(produtoRepository.findByNomeContainingIgnoreCase(nome));
     }
@@ -75,11 +81,29 @@ public class ProdutoController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/deletar/{id}")
     public void delete(@PathVariable Long id){
-        Optional<Produto> Produto = produtoRepository.findById(id);
+        Optional<Produto> produto = produtoRepository.findById(id);
 
-        if (Produto.isEmpty()) 
+        if (produto.isEmpty()) 
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         
         produtoRepository.deleteById(id);
+    }
+
+    @GetMapping("/{id}/promocao")
+    public ResponseEntity<ProdutoDto> buscarProdutoEmPromocao(@PathVariable Long id) {
+        return produtoService.buscarProdutoComPromocao(id)
+            .map(ResponseEntity::ok)
+            .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/promocoes")
+    public ResponseEntity<List<ProdutoDto>> getProdutosEmPromocao() {
+        List<ProdutoDto> produtosPromocao = produtoService.listarProdutosEmPromocao();
+
+        if (produtosPromocao.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.ok(produtosPromocao);
     }
 }

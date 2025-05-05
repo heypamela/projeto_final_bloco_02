@@ -35,9 +35,23 @@ public class Produto {
     @NotNull
     private Integer estoque;
 
+    private Boolean emPromocao = false;
+
     @ManyToOne
     @JsonIgnoreProperties("produto")
     private Categoria categoria;
+
+    public Produto(Long id, String nome, String descricao, BigDecimal preco, Integer estoque, 
+            Boolean emPromocao) {
+        this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.preco = preco;
+        this.estoque = estoque;
+        this.emPromocao = emPromocao;
+    }
+
+    public Produto(){ }
 
     public Long getId() {
         return id;
@@ -85,5 +99,13 @@ public class Produto {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+
+    public Boolean getEmPromocao() {
+        return emPromocao;
+    }
+
+    public void setEmPromocao(Boolean emPromocao) {
+        this.emPromocao = emPromocao;
     }
 }

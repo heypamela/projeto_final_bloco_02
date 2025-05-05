@@ -186,12 +186,12 @@ collection:
           modified: 1746449696369
           sortKey: -1745331130791
         children:
-          - url: http://localhost:8080/produtos
+          - url: http://localhost:8080/produtos/exibir-todos
             name: GetAll
             meta:
               id: req_873555c5e7d1492fa9a386234fdc82ef
               created: 1746449696369
-              modified: 1746449696369
+              modified: 1746463904714
               isPrivate: false
               sortKey: -1745331130790
             method: GET
@@ -203,12 +203,12 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: http://localhost:8080/produtos/procurar/500
+          - url: http://localhost:8080/produtos/procurar/nome/Li
             name: GetNome
             meta:
               id: req_7ebbbc0697964a6bad74c5d99854bd7a
               created: 1746449696370
-              modified: 1746451740111
+              modified: 1746465200287
               isPrivate: false
               sortKey: -1745331130787
             method: GET
@@ -220,12 +220,12 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: http://localhost:8080/produtos/deletar/1
+          - url: http://localhost:8080/produtos/deletar/2
             name: Apagar Produto
             meta:
               id: req_944b7027af2b4f7a80de69dd0862de33
               created: 1746449696370
-              modified: 1746451846435
+              modified: 1746464157108
               isPrivate: false
               sortKey: -1745331130789
             method: DELETE
@@ -242,7 +242,7 @@ collection:
             meta:
               id: req_32a79e5ea68d41f19f2ec8e5b8244534
               created: 1746449696371
-              modified: 1746451692655
+              modified: 1746465114471
               isPrivate: false
               sortKey: -1745331130786
             method: POST
@@ -250,10 +250,10 @@ collection:
               mimeType: application/json
               text: >-
                 {
-                    "nome": "Amoxicilina 500mg",
+                    "nome": "Amoxicilina Líquido",
                     "descricao": "Antibiótico de largo espectro. Requer receita médica",
-                    "preco": "25.00",
-                    "estoque": 100,
+                    "preco": "45.00",
+                    "estoque": 20,
                     "categoria": {
                         "id": 2
                     }
@@ -269,12 +269,12 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: http://localhost:8080/produtos/1
+          - url: http://localhost:8080/produtos/procurar/id/5
             name: GetId
             meta:
               id: req_54aa893a83be4b458724b0e868cae859
               created: 1746449696371
-              modified: 1746451718401
+              modified: 1746465156878
               isPrivate: false
               sortKey: -1745331130788
             method: GET
@@ -291,7 +291,7 @@ collection:
             meta:
               id: req_b718f665e7ac40f5a9c24a977724017d
               created: 1746449696371
-              modified: 1746451827893
+              modified: 1746465358642
               isPrivate: false
               sortKey: -1745331130785
             method: PUT
@@ -299,11 +299,12 @@ collection:
               mimeType: application/json
               text: >-
                 {
-                    "id": 1,
-                    "nome": "Azitromicina 500mg",
+                    "id": 5,
+                    "nome": "Amoxicilina Liquida - Sabor Morango",
                     "descricao": "Indicado para infecções respiratórias e de pele",
-                    "preco": "30.00",
-                    "estoque": 77,
+                    "preco": "40.00",
+                    "estoque": 33,
+                	  "emPromocao": false,
                     "categoria": {
                         "id": 2
                     }
@@ -319,6 +320,43 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
+          - url: http://localhost:8080/produtos/promocoes
+            name: GetAllPromocao
+            meta:
+              id: req_9e75b0602cc64336b9419e8d6bff5422
+              created: 1746464353476
+              modified: 1746465346775
+              isPrivate: false
+              sortKey: -1746464353476
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8080/produtos/5/promocao
+            name: GetIdPromocao
+            meta:
+              id: req_67077d09edc3448383d0ddd3427b6c7b
+              created: 1746465287399
+              modified: 1746465308941
+              isPrivate: false
+              sortKey: -1745331130787.5
+            method: GET
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
       - name: Categoria
         meta:
           id: fld_00b807fdebb54896adeb09e1103f4ab7
@@ -326,12 +364,12 @@ collection:
           modified: 1746449696372
           sortKey: -1745331130784
         children:
-          - url: http://localhost:8080/categorias
+          - url: http://localhost:8080/categorias/exibir-todos
             name: GetAll
             meta:
               id: req_f58ac78bb4324d50ab31481c4816d8cf
               created: 1746449696372
-              modified: 1746449696372
+              modified: 1746463181852
               isPrivate: false
               sortKey: -1745331130783
             method: GET
@@ -382,7 +420,7 @@ collection:
             meta:
               id: req_be670b5e26ff4e0e915116a2b5f2b5fa
               created: 1746449696373
-              modified: 1746449696373
+              modified: 1746463079000
               isPrivate: false
               sortKey: -1745331130781
             method: GET
